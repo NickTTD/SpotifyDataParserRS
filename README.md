@@ -20,7 +20,8 @@ cargo build --release
 cargo run --release -- "Ride"
 ```
 
-![Búsqueda de canción](screenshots/search.png)
+<img width="1575" height="326" alt="image" src="https://github.com/user-attachments/assets/a1310292-087f-4d1c-9e73-b2d2f3ca4f51" />
+
 
 ### Ranking de canciones más escuchadas
 
@@ -30,7 +31,8 @@ Muestra todas las canciones con al menos N reproducciones:
 cargo run --release -- --top 150
 ```
 
-![Ranking top](screenshots/top.png)
+<img width="1085" height="316" alt="image" src="https://github.com/user-attachments/assets/f9220c56-0b62-4148-8c9b-33de6e0c881a" />
+
 
 ### Estadísticas generales
 
@@ -40,7 +42,8 @@ Tabla por año con streams totales, canciones únicas y tiempo de escucha:
 cargo run --release -- --stats
 ```
 
-![Estadísticas por año](screenshots/stats.png)
+<img width="762" height="507" alt="image" src="https://github.com/user-attachments/assets/060bdaca-010c-45e1-930e-ed2ee450d764" />
+
 
 ## Dependencias
 
