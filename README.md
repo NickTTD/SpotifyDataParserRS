@@ -1,51 +1,61 @@
-# Spotify Streaming History Parser
+# Statify CLI
 
-Parser de archivos JSON del historial extendido de Spotify, escrito en Rust con procesamiento en paralelo usando [rayon](https://github.com/rayon-rs/rayon).
+Rust CLI tool that imports your Spotify Extended Streaming History into SQLite and provides interactive charts, search, and statistics.
 
 ## Setup
 
-1. Pedí tu data en [Spotify Privacy Settings](https://www.spotify.com/account/privacy/) (Extended Streaming History)
-2. Copiá la carpeta `Spotify Extended Streaming History/` (con los archivos `Streaming_History_Audio_*.json`) a la raíz del proyecto
-3. Compilá y ejecutá:
+1. Request your data from [Spotify Privacy Settings](https://www.spotify.com/account/privacy/) (Extended Streaming History)
+2. Copy the `Spotify Extended Streaming History/` folder (with `Streaming_History_Audio_*.json` files) to the project root
+3. Build and import:
 
 ```bash
 cargo build --release
+./target/release/spotify-stats import
 ```
 
-## Uso
+## Usage
 
-### Buscar una canción
+Running with no arguments launches the **interactive timeline** — a navigable monthly chart of your entire listening history:
 
 ```bash
-cargo run --release -- "Ride"
+cargo run --release
 ```
 
-<img width="1575" height="326" alt="image" src="https://github.com/user-attachments/assets/a1310292-087f-4d1c-9e73-b2d2f3ca4f51" />
+- Navigate months with `←/→` or `h/l`
+- Press `↓/j/Enter` on any month to drill down into a **daily view**
+- In the daily view, moving past the first/last day crosses into adjacent months
+- Press `↑/k` to go back, `q` to quit
 
-
-### Ranking de canciones más escuchadas
-
-Muestra todas las canciones con al menos N reproducciones:
+### Search tracks
 
 ```bash
-cargo run --release -- --top 150
+cargo run --release -- search "Ride"
 ```
 
-<img width="1085" height="316" alt="image" src="https://github.com/user-attachments/assets/f9220c56-0b62-4148-8c9b-33de6e0c881a" />
+### Top tracks
 
-
-### Estadísticas generales
-
-Tabla por año con streams totales, canciones únicas y tiempo de escucha:
+Shows all tracks with at least N plays:
 
 ```bash
-cargo run --release -- --stats
+cargo run --release -- top --min 150
 ```
 
-<img width="762" height="507" alt="image" src="https://github.com/user-attachments/assets/060bdaca-010c-45e1-930e-ed2ee450d764" />
+### Yearly statistics
 
+```bash
+cargo run --release -- stats
+```
 
-## Dependencias
+### Static chart by year
 
-- **serde** + **serde_json** - deserialización de JSON
-- **rayon** - paralelismo (procesa los archivos concurrentemente)
+```bash
+cargo run --release -- chart --year 2024
+```
+
+## Dependencies
+
+- **rusqlite** — SQLite storage (bundled)
+- **clap** — CLI argument parsing
+- **crossterm** — interactive terminal UI
+- **serde** + **serde_json** — JSON deserialization
+- **rayon** — parallel file processing
