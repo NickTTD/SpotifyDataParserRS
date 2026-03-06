@@ -1,6 +1,7 @@
 # Statify CLI
 
 Rust CLI tool that imports your Spotify Extended Streaming History into SQLite and provides interactive charts, search, and statistics.
+<img width="1440" height="862" alt="image" src="https://github.com/user-attachments/assets/cfb851c5-300b-43fe-a789-5bd50f0cb728" />
 
 ## Setup
 
